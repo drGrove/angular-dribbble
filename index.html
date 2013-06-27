@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="dabbble">
 <head>
     <meta charset="utf-8">
     <title>Dribbble Angular</title>
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="css/app.css" />
 </head>
-<body>
+<body ng-controller="AppCtrl">
     <div class="container">
         <div class="navbar">
             <div class="navbar-inner">
@@ -14,7 +14,21 @@
                 <ul class="nav">
                 </ul>
             </div>
-        </div>
+            <div ng-controller="ShotsListCtrl">
+                <ul class="thumbnails">
+                    <li class="shot span3" ng-repeat="shot in list.shots">
+                        <div class="thumbnail">
+                            <a href="#/shots/{{ shot.id }}">
+                                <img ng-src="{{ shot.image_url }}" />
+                            </a>
+                            <strong class="title">{{ shot.title }}</strong>
+                            <a class="player" href="#/players/{{ shot.player.username }}">
+                                {{ shot.player.name }}
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
     </div>
     <script src="lib/angular/angular.js"></script>
     <script src="js/app.js"></script>
